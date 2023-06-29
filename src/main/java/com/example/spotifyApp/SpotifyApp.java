@@ -1,30 +1,23 @@
-package org.example;
+package com.example.spotifyApp;
 import org.example.config.accessTokenManager;
 
-
-import org.example.config.config;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-
+@SpringBootApplication
 public class SpotifyApp {
     public static void main(String[] args) throws IOException {
+        SpringApplication.run(SpotifyApp.class, args);
         System.out.println("Hello world!");
         SpotifyApp sApp = new SpotifyApp();
 
