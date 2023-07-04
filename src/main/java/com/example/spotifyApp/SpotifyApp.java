@@ -1,18 +1,22 @@
 package com.example.spotifyApp;
-import org.example.config.accessTokenManager;
+//import org.example.config.accessTokenManager;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class SpotifyApp {
@@ -39,6 +43,20 @@ public class SpotifyApp {
 
         String ArtistID = sApp.searchArtist(token, "Drake");
         sApp.GetArtist(token, ArtistID );
+    }
+    @Bean
+    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+        return args -> {
+
+            System.out.println("Let's inspect the beans provided by Spring Boot:");
+
+            String[] beanNames = ctx.getBeanDefinitionNames();
+            Arrays.sort(beanNames);
+            for (String beanName : beanNames) {
+                System.out.println(beanName);
+            }
+
+        };
     }
 
     public void GetArtist(String token, String artistID) throws IOException {

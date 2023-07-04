@@ -1,4 +1,4 @@
-package org.example.config;//package com.example.project;
+package com.example.spotifyApp;//package com.example.project;
 
 public class config {
     public static final String CLIENT_ID ="70bc848de86d45449e7c9f2c7cfb165b";
