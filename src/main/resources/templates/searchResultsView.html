@@ -1,0 +1,23 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+<h1>Artist Details</h1>
+<p>Artist Name: <span th:text="${artist.name}"></span></p>
+<p>Total Followers: <span th:text="${artist.followers}"></span></p>
+<p>Genres: <span th:text="${artist.genres}"></span></p>
+<p>Popularity: <span th:text="${artist.popularity}"></span></p>
+<p>Artist ID: <span th:text="${artist.artistID}"></span></p>
+<p>Image URLs:</p>
+<div>
+    <img th:each="url : ${artist.imageUrls}" th:src="${url}" alt="Artist Image">
+</div>
+<p>Image Heights: <span th:text="${artist.imageHeights}"></span></p>
+<p>Image Widths: <span th:text="${artist.imageWidths}"></span></p>
+</body>
+</html>
