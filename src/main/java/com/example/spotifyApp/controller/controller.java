@@ -21,7 +21,7 @@ public class controller {
         // Perform the necessary logic to search for the artist
         // You can pass the artistName to your existing methods for processing
         // Return the appropriate view or redirect to the result page
-        return null;
+        return "searchResultsView";
     }
 
 }
