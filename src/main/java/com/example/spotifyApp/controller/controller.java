@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 // @RestController
 @Controller
@@ -21,7 +20,7 @@ public class controller {
         // Perform the necessary logic to search for the artist
         // You can pass the artistName to your existing methods for processing
         // Return the appropriate view or redirect to the result page
-        return "searchResultsView";
+        return "index";
     }
 
 }

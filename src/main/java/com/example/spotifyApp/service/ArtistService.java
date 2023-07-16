@@ -2,7 +2,6 @@ package com.example.spotifyApp.service;
 
 import com.example.spotifyApp.accessTokenManager;
 import com.example.spotifyApp.model.ArtistDTO;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -11,21 +10,18 @@ import com.google.gson.JsonObject;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
-import java.io.DataInput;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 @Service
 public class ArtistService {
 
 
-//    public ArtistDTO getArtist(String query) throws IOException {
         public List<Map<String, Object>> getArtist(String query) throws IOException{
             List<Map<String, Object>> profiles = new ArrayList<>();
 
@@ -77,7 +73,12 @@ public class ArtistService {
                     for (int j = 0; j < imagesArray.size(); j++) {
                         JsonObject imageObj = imagesArray.get(j).getAsJsonObject();
                         String imageUrl = imageObj.get("url").getAsString();
-                        imageUrls.add(imageUrl);
+                        if(imageUrl == null){
+                            imageUrls.add("/static/assets/img/B5PP-IIIMAA-qem.png");
+                        }else {
+                            imageUrls.add(imageUrl);
+                        }
+                        System.out.println(imageUrl);
                     }
 
                     Map<String, Object> profile = new HashMap<>();
