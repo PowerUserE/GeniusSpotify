@@ -68,6 +68,7 @@ public class ArtistService {
                     String uri = artistObj.get("uri").getAsString();
                     int totalFollowers = artistObj.getAsJsonObject("followers").get("total").getAsInt();
 
+
                     JsonArray imagesArray = artistObj.getAsJsonArray("images");
                     List<String> imageUrls = new ArrayList<>();
                     for (int j = 0; j < imagesArray.size(); j++) {
@@ -81,12 +82,15 @@ public class ArtistService {
                         System.out.println(imageUrl);
                     }
 
+                    String externalUrl = artistObj.getAsJsonObject("external_urls").get("spotify").getAsString();
+
                     Map<String, Object> profile = new HashMap<>();
                     profile.put("name", name);
                     profile.put("popularity", popularity);
                     profile.put("uri", uri);
                     profile.put("imageUrls", imageUrls);
                     profile.put("followers", totalFollowers);
+                    profile.put("externalUrl", externalUrl);
                     profiles.add(profile);
                 }
 

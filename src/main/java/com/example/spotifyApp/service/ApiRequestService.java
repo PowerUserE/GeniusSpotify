@@ -1,9 +1,12 @@
 package com.example.spotifyApp.service;
 
+import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+@Service
 public class ApiRequestService {
 
     public void makeApiRequest() throws IOException {

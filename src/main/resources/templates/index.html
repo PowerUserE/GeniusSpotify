@@ -56,7 +56,9 @@
         <div class="row">
             <div class="col-lg-4" th:each="profile : ${artist}">
                 <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                    <img class="img-fluid rounded-circle mb-3" th:src="${profile.imageUrls != null && !profile.imageUrls.isEmpty() ? profile.imageUrls[0] : 'https://i.stack.imgur.com/34AD2.jpg'}" alt="Artist Image" />
+                    <a th:href="${profile['externalUrl']}">
+                        <img class="img-fluid rounded-circle mb-3" th:src="${profile.imageUrls != null && !profile.imageUrls.isEmpty() ? profile.imageUrls[0] : 'https://i.stack.imgur.com/34AD2.jpg'}" alt="Artist Image" />
+                    </a>
                     <h5 th:text="${profile['name']}"></h5>
                     <h5 th:text="${profile['popularity']}"></h5>
                     <h5 th:text="${profile['uri']}"></h5>
