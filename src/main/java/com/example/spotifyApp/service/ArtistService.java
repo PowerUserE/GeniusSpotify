@@ -32,7 +32,7 @@ public class ArtistService {
         String tenIDs = String.valueOf(searchArtistID(query));
         String artistID = "55zx7AihSM91XuqPqofoct";
 //        String url = "https://api.spotify.com/v1/artists/"+artistID;
-        String url = "https://api.spotify.com/v1/search?q="+ query + "&type=artist&limit=6";
+        String url = "https://api.spotify.com/v1/search?q="+ query + "&type=artist&limit=50";
 
         HttpURLConnection connection = null;
 
@@ -79,7 +79,7 @@ public class ArtistService {
                         }else {
                             imageUrls.add(imageUrl);
                         }
-                        System.out.println(imageUrl);
+//                        System.out.println(imageUrl);
                     }
 
                     String externalUrl = artistObj.getAsJsonObject("external_urls").get("spotify").getAsString();
@@ -92,6 +92,7 @@ public class ArtistService {
                     profile.put("followers", totalFollowers);
                     profile.put("externalUrl", externalUrl);
                     profiles.add(profile);
+
                 }
 
             }else {
@@ -102,6 +103,9 @@ public class ArtistService {
                 connection.disconnect();
             }
         }
+        SearchService ss = new SearchService();
+        TrackService ts = new TrackService();
+        ts.getArtistTracks(query);
         return profiles;
     }
 

@@ -18,7 +18,7 @@ public class ArtistDTO {
         return popularity;
     }
 
-    public void setPopularity(int popularity) {
+        public void setPopularity(int popularity) {
         this.popularity = popularity;
     }
 

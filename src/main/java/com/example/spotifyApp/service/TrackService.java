@@ -1,55 +1,75 @@
 package com.example.spotifyApp.service;
 
-
-import com.example.spotifyApp.accessTokenManager;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class TrackService {
 
-    public List<Map<String, Object>> getTrack(String query) throws IOException {
+    public List<Map<String, Object>> getArtistTracks(String query) throws IOException {
+        List<Map<String, Object>> trackProfiles = new ArrayList<>();
+        SearchService ss = new SearchService();
+        Gson gson = new Gson();
 
-        accessTokenManager atm = new accessTokenManager();
-        String token = atm.requestAccessToken();
-        String url = "";
+        String JsonResponse = ss.searchArtistTracks(query);
 
-        HttpURLConnection connection = null;
+        JsonObject responseObj = gson.fromJson(JsonResponse, JsonObject.class);
+        JsonObject tracksObj = responseObj.getAsJsonObject("tracks");
+        JsonArray itemsArray = tracksObj.getAsJsonArray("items");
 
-        try {
-            URL apiUrl = new URL(url);
-            connection = (HttpURLConnection) apiUrl.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Authorization", "Bearer " + token);
+        for (int i = 0; i < itemsArray.size(); i++) {
+            JsonObject itemObj = itemsArray.get(i).getAsJsonObject();
 
-            int responseCode = connection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                Gson gson = new Gson();
-                InputStreamReader reader = new InputStreamReader(connection.getInputStream());
+            String name = itemObj.get("name").getAsString();
 
-                BufferedReader bufferedReader = new BufferedReader(reader);
-                StringBuilder response = new StringBuilder();
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    response.append(line);
-//                    System.out.println(line);
-                }
-                System.out.println("JSON Response: " + response);
+            JsonObject albumObj = itemObj.getAsJsonObject("album");
+            String albumName = albumObj.get("name").getAsString();
+            String releaseDate = albumObj.get("release_date").getAsString();
+
+            JsonArray artistsArray = itemObj.getAsJsonArray("artists");
+            List<String> artistNames = new ArrayList<>();
+            for (int j = 0; j < artistsArray.size(); j++) {
+                JsonObject artistObj = artistsArray.get(j).getAsJsonObject();
+                String artistName = artistObj.get("name").getAsString();
+                artistNames.add(artistName);
             }
-            }finally{
-                if (connection != null) {
-                    connection.disconnect();
+
+            JsonArray imagesArray = albumObj.getAsJsonArray("images");
+            List<String> imageUrls = new ArrayList<>();
+            for (int j = 0; j < imagesArray.size(); j++) {
+                JsonObject imageObj = imagesArray.get(j).getAsJsonObject();
+                String imageUrl = imageObj.get("url").getAsString();
+                if(imageUrl == null){
+                    imageUrls.add("/static/assets/img/B5PP-IIIMAA-qem.png");
+                }else {
+                    imageUrls.add(imageUrl);
                 }
             }
-            return null;
 
+            Map<String, Object> trackProfile = new HashMap<>();
+            trackProfile.put("name", name);
+            trackProfile.put("Album", albumName);
+            trackProfile.put("Release Date", releaseDate);
+            trackProfile.put("Artists", artistNames);
+            trackProfile.put("imageUrls", imageUrls);
+            trackProfiles.add(trackProfile);
+
+            System.out.println("Name: " + name);
+            System.out.println("Album: " + albumName);
+            System.out.println("Release Date: " + releaseDate);
+            System.out.println("Artists: " + artistNames);
+            System.out.println("ImageUrls: " + imageUrls);
+            System.out.println("-----------------------------");
+
+        }
+        return trackProfiles;
     }
 }
