@@ -22,9 +22,10 @@ import java.util.*;
 public class ArtistService {
 
 
-        public List<Map<String, Object>> getArtist(String query) throws IOException{
+        public List<Map<String, Object>> getArtist(String rawQuery) throws IOException{
             List<Map<String, Object>> profiles = new ArrayList<>();
 
+            String query = rawQuery.replace(" ", "");
 
         ArtistDTO artistDTO = new ArtistDTO();
         accessTokenManager atm = new accessTokenManager();
