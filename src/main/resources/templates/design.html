@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <title>Draggable Image Slider | CodingNepal</title>
+    <link rel="stylesheet" href="/static/design.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+
+<section id="trackProfileResults">
+    <div class="wrapper">
+        <i id="left" class="fa-solid fa-angle-left"></i>
+
+        <div class="carousel">
+<!--            <div th:each="trackProfile : ${track}">&ndash;&gt;-->
+<!--       <img th:src="${trackProfile.imageUrls != null && !trackProfile.imageUrls.isEmpty() ? trackProfile.imageUrls[0] : 'https://i.stack.imgur.com/34AD2.jpg'}" alt="Track Image" />-->
+            <img src="https://i.stack.imgur.com/34AD2.jpg" alt="img" draggable="false">
+            <img src="https://i.stack.imgur.com/34AD2.jpgg" alt="img" draggable="false">
+            <img src="https://i.stack.imgur.com/34AD2.jpg" alt="img" draggable="false">
+            <img src="https://i.stack.imgur.com/34AD2.jpg" alt="img" draggable="false">
+<!--        </div>-->
+            </div>
+        <i id="right" class="fa-solid fa-angle-right"></i>
+    </div>
+</section>
+
+</body>
+</html>

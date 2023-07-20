@@ -27,7 +27,7 @@ public class SearchService {
         StringBuilder response = new StringBuilder();
         StringBuilder results = new StringBuilder();
 
-        String url = "https://api.spotify.com/v1/search?q=" + encodedQuery + "&type=track&limit=10";
+        String url = "https://api.spotify.com/v1/search?q=" + encodedQuery + "&type=track&limit=50";
 
         URL apiUrl = new URL(url);
         HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
@@ -63,4 +63,38 @@ public class SearchService {
         connection.disconnect();
         return response.toString();
     }
+
+    public List <String> searchArtistDetails (String artistID) throws IOException{
+        accessTokenManager atm = new accessTokenManager();
+        String token = atm.requestAccessToken();
+
+        String url = "https://api.spotify.com/v1/artists/" + artistID;
+
+
+        URL apiUrl = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("Authorization", "Bearer " + token);
+
+        int responseCode = connection.getResponseCode();
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            System.out.println(response.toString());
+        } else {
+            System.out.println("Request failed. Response Code: " + responseCode);
+        }
+        return null;
+    }
+
+
+
+
 }

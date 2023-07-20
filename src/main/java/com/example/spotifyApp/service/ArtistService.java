@@ -104,7 +104,6 @@ public class ArtistService {
                 connection.disconnect();
             }
         }
-        SearchService ss = new SearchService();
         TrackService ts = new TrackService();
         ts.getArtistTracks(query);
         return profiles;
@@ -115,7 +114,6 @@ public class ArtistService {
         ArrayList<String>IDList = new ArrayList<>();
         accessTokenManager atm = new accessTokenManager();
         String token = atm.requestAccessToken();
-        String ArtistID = "";
 
         //API endpoint URL
         String queryURL = "https://api.spotify.com/v1/search?q="+ artistName + "&type=artist&limit=5";
