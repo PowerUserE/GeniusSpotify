@@ -62,12 +62,12 @@ public class TrackService {
             trackProfile.put("imageUrls", imageUrls);
             trackProfiles.add(trackProfile);
 
-            System.out.println("Name: " + name);
-            System.out.println("Album: " + albumName);
-            System.out.println("Release Date: " + releaseDate);
-            System.out.println("Artists: " + artistNames);
-            System.out.println("ImageUrls: " + imageUrls);
-            System.out.println("-----------------------------");
+//            System.out.println("Name: " + name);
+//            System.out.println("Album: " + albumName);
+//            System.out.println("Release Date: " + releaseDate);
+//            System.out.println("Artists: " + artistNames);
+//            System.out.println("ImageUrls: " + imageUrls);
+//            System.out.println("-----------------------------");
 
         }
         return trackProfiles;

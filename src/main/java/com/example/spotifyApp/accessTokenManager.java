@@ -14,7 +14,7 @@ public class accessTokenManager {
         String clientSecret = config.CLIENT_SECRET;
         URI redirectUri = SpotifyHttpManager.makeUri("https://api.spotify.com");
 
-        System.out.println(clientID);
+//        System.out.println(clientID);
 
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
                 .setClientId(clientID)
@@ -30,7 +30,7 @@ public class accessTokenManager {
             final var clientCredentials = clientCredentialsRequest.execute();
             accessToken = clientCredentials.getAccessToken();
 
-            System.out.println("Access Token: " + accessToken);
+//            System.out.println("Access Token: " + accessToken);
         } catch (Exception e) {
             System.out.println("Request failed: " + e.getMessage());
         }

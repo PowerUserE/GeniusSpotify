@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import org.jmusixmatch.MusixMatchException;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -22,12 +23,12 @@ import java.util.*;
 public class ArtistService {
 
 
-        public List<Map<String, Object>> getArtist(String rawQuery) throws IOException{
+        public List<Map<String, Object>> getArtist(String rawQuery) throws IOException, MusixMatchException {
             List<Map<String, Object>> profiles = new ArrayList<>();
 
             String query = rawQuery.replace(" ", "");
 
-        ArtistDTO artistDTO = new ArtistDTO();
+//        ArtistDTO artistDTO = new ArtistDTO();
         accessTokenManager atm = new accessTokenManager();
         String token = atm.requestAccessToken();
         String tenIDs = String.valueOf(searchArtistID(query));
@@ -55,7 +56,7 @@ public class ArtistService {
                     response.append(line);
 //                    System.out.println(line);
                 }
-                System.out.println("JSON Response: " + response);
+//                System.out.println("JSON Response: " + response);
 
                 JsonObject responseObj = gson.fromJson(response.toString(), JsonObject.class);
                 JsonObject artistsObj = responseObj.getAsJsonObject("artists");
@@ -106,6 +107,11 @@ public class ArtistService {
         }
         TrackService ts = new TrackService();
         ts.getArtistTracks(query);
+
+        LyricsService lyricsService = new LyricsService();
+        lyricsService.getTrackLyrics("track name", "artist name");
+
+
         return profiles;
     }
 
@@ -135,7 +141,7 @@ public class ArtistService {
             if (artistsNode != null && artistsNode.has("items")) {
                 JsonNode itemsNode = artistsNode.get("items");
                 for (JsonNode artistNode : itemsNode) {
-                    System.out.println(artistNode.get("id").asText());
+//                    System.out.println(artistNode.get("id").asText());
                     IDList.add(artistNode.get("id").asText());
                 }
             }

@@ -43,7 +43,7 @@ public class SearchService {
             }
             reader.close();
 
-            System.out.println("Json Response searchArtistTrackID: " + response);
+//            System.out.println("Json Response searchArtistTrackID: " + response);
 
             Gson gson = new Gson();
             JsonObject responseObj = gson.fromJson(response.toString(), JsonObject.class);
@@ -55,7 +55,7 @@ public class SearchService {
 
                 String id = artistObj.get("id").getAsString();
                 results.append(id);
-                System.out.println("id: "+id);
+//                System.out.println("id: "+id);
             }
         } else {
             System.out.println("Request failed with response code: " + responseCode);
@@ -87,7 +87,7 @@ public class SearchService {
             }
             in.close();
 
-            System.out.println(response.toString());
+//            System.out.println(response.toString());
         } else {
             System.out.println("Request failed. Response Code: " + responseCode);
         }
