@@ -1,7 +1,6 @@
 package com.example.spotifyApp.service;
 
 import com.example.spotifyApp.accessTokenManager;
-import com.example.spotifyApp.model.ArtistDTO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -23,7 +22,7 @@ import java.util.*;
 public class ArtistService {
 
 
-        public List<Map<String, Object>> getArtist(String rawQuery) throws IOException, MusixMatchException {
+        public List<Map<String, Object>> getArtist(String rawQuery) throws IOException{
             List<Map<String, Object>> profiles = new ArrayList<>();
 
             String query = rawQuery.replace(" ", "");
@@ -31,8 +30,8 @@ public class ArtistService {
 //        ArtistDTO artistDTO = new ArtistDTO();
         accessTokenManager atm = new accessTokenManager();
         String token = atm.requestAccessToken();
-        String tenIDs = String.valueOf(searchArtistID(query));
-        String artistID = "55zx7AihSM91XuqPqofoct";
+//        String tenIDs = String.valueOf(searchArtistID(query));
+//        String artistID = "55zx7AihSM91XuqPqofoct";
 //        String url = "https://api.spotify.com/v1/artists/"+artistID;
         String url = "https://api.spotify.com/v1/search?q="+ query + "&type=artist&limit=50";
 
@@ -94,7 +93,6 @@ public class ArtistService {
                     profile.put("followers", totalFollowers);
                     profile.put("externalUrl", externalUrl);
                     profiles.add(profile);
-
                 }
 
             }else {
@@ -108,8 +106,9 @@ public class ArtistService {
         TrackService ts = new TrackService();
         ts.getArtistTracks(query);
 
-        LyricsService lyricsService = new LyricsService();
-        lyricsService.getTrackLyrics("track name", "artist name");
+//        LyricsService lyricsService = new LyricsService();
+//        lyricsService.getTrackLyrics("track name", "artist name");
+
 
 
         return profiles;
@@ -150,6 +149,30 @@ public class ArtistService {
             System.out.println("Request failed. Response Code: " + responseCode);
         }
         return IDList;
+    }
+    public String getArtistImageUrl(String imgUrl){
+            if (imgUrl == null){
+                return imgUrl;
+            }
+        String firstImageUrl = "";
+        {
+            String urlsWithoutBrackets = imgUrl.substring(1, imgUrl.length() - 1);
+
+            String[] imageUrls = urlsWithoutBrackets.split(", ");
+
+            // Access the first image URL
+            if (imageUrls.length > 0) {
+                firstImageUrl = imageUrls[0];
+                System.out.println("First Image URL: " + firstImageUrl);
+            } else {
+                System.out.println("No image URLs found.");
+            }
+        }
+            return firstImageUrl;
+    }
+
+    public String getArtistName(String artistName){
+            return null;
     }
 
 }

@@ -7,17 +7,10 @@ import org.jmusixmatch.entity.track.Track;
 import org.jmusixmatch.entity.track.TrackData;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+
+import static com.example.spotifyApp.config.MUSIC_MATCH_API_KEY;
 
 @Service
 public class LyricsService {
@@ -29,7 +22,7 @@ public class LyricsService {
 
    public String getTrackLyrics (String trackName, String artistName) throws IOException, MusixMatchException {
 
-       String apiKey = "78d2e876b78b465128709ed4490e6057";
+       String apiKey = MUSIC_MATCH_API_KEY;
        MusixMatch musixMatch = new MusixMatch(apiKey);
 
 
