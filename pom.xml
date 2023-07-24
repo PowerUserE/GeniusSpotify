@@ -13,10 +13,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>GeniusSpotify</name>
 	<description>Working with the Spotify and Genius API to create a personal project</description>
+<!--	<properties>-->
+<!--		<java.version>20</java.version>-->
+<!--		<vaadin.version>24.1.1</vaadin.version>-->
+<!--	</properties>-->
 	<properties>
-		<java.version>20</java.version>
-		<vaadin.version>24.1.1</vaadin.version>
+		<java.version>17</java.version>
 	</properties>
+
 	<dependencies>
 
 		<dependency>
