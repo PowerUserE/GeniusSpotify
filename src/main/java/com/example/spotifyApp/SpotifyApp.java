@@ -19,7 +19,7 @@ public class SpotifyApp {
         ApiRequestService apiRequestService = new ApiRequestService();
         apiRequestService.makeApiRequest();
     }
-    	@RequestMapping("/") String sayHello() {
+    	@RequestMapping("/test") String sayHello() {
 		return "Is this the reason?!";
 	}
         }
