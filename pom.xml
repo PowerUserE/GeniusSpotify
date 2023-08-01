@@ -17,6 +17,7 @@
 <!--		<vaadin.version>24.1.1</vaadin.version>-->
 <!--	</properties>-->
 	<properties>
+		<start-class>com.example.demo.SpotifyAppTest</start-class>
 		<java.version>17</java.version>
 		<vaadin.version>24.1.1</vaadin.version>
 <!--		<maven.compiler.target>1.8</maven.compiler.target>-->
@@ -247,7 +248,7 @@
 							<groupId>org.springframework.boot</groupId>
 							<artifactId>spring-boot-maven-plugin</artifactId>
 							<configuration>
-								<mainClass>com.baeldung.demo.DemoApplication</mainClass>
+								<mainClass>com.example.demo.SpotifyAppTest</mainClass>
 								<layout>JAR</layout>
 							</configuration>
 							<executions>
